@@ -11,12 +11,15 @@ const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile'); 
 
 const cors = require('cors'); 
+const connectToMongo = require('./config/db');
 
 
 const app = express(); 
 app.use(cors({ origin: "*"})); 
 
-const prot = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000; 
+
+connectToMongo();
 
 app.use(express.json()); 
 app.use(header); 

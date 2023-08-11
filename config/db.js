@@ -4,14 +4,16 @@ mongoose.Promise = global.Promise;
 
 const url = 'mongodb+srv://userOne:JUECc9PuA8RE5X69@cluster0.bff6seb.mongodb.net/blog'; 
 
-let mong = mongoose.connect(url, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-}, (err) => {
-    if (!err) {
-        console.log('MongoDB Connection Succeeded.')
-    } else {
-        console.log('Error in DB connection: ' + err)
+const connectToMongo = async() => {
+    try {
+        mongoose.set('strictQuery', false); 
+        mongoose.connect(url); 
+        console.log("MongoDB connected");
+    }catch(error){
+        console.log(error);
+        
     }
-});
+}
+
+
+module.exports = connectToMongo;

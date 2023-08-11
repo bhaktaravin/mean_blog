@@ -2,7 +2,7 @@ const express = require('express')
 const Post = require('../models/post')
 const router = new express.Router()
 const multer = require("multer");
-const checkAuth = require("../middlewares/check-auth");
+const checkAuth = require("../middlewares/auth");
 
 const MIME_TYPE_MAP = {
     "image/png": "png",
@@ -125,7 +125,7 @@ checkAuth,
   });
   
 
-router.get("", (req, res, next) => {
+router.get("/", (req, res, next) => {
     Post.find().then(documents => {
         if(documents){
             res.status(200).json({
